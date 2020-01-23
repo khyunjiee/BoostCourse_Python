@@ -1,0 +1,174 @@
+# Split 함수
+# String 타입의 값을 나눠서 List 형태로 변환
+items = 'zero one two three'.split()    # 빈칸을 기준으로 문자열 나누기
+print(items)
+example = 'python,jquery,javascript'
+print(example.split(','))       # ,를 기준으로 분자열 나누기
+a, b, c = example.split(',')        # 리스트에 있는 값을 a, b, c 로 unpacking
+example = 'cs50.gachon.edu'
+subdomain, domain, tld = example.split('.')     # 리스트에 있는 값을 subdomain, domain, tld로 unpacking
+
+# Join 함수
+# String List를 합쳐 하나의 String으로 변환할 때 사용
+colors = ['red', 'blue', 'green', 'yellow']
+result = ''.join(colors)
+print(result)
+result = ' '.join(colors)
+print(result)
+result = ', '.join(colors)
+print(result)
+result = '-'.join(colors)
+print(result)
+
+# List Comprehensions
+# 기존 List를 이용하여 다른 List를 만드는 기법
+# 포괄적인 List, 포함되는 리스트라는 의미로 사용됨
+# 파이썬에서 가장 많이 사용되는 기법 중 하나
+# 일반적으로 for + append 보다 속도가 빠름
+result = [i for i in range(10)]
+print(result)
+result = [i for i in range(10) if i % 2 == 0]
+print(result)
+
+word_1 = "Hello"
+word_2 = "World"
+result = [i+j for i in word_1 for j in word_2]      # Nested for loop
+print(result)
+
+case_1 = ["A", "B", "C"]
+case_2 = ["D", "E", "A"]
+result = [i+j for i in case_1 for j in case_2]      # One demensional
+print(result)
+result = [[i+j for i in case_1] for j in case_2]        # Two demensional
+print(result)
+result = [i+j for i in case_1 for j in case_2 if not (i==j)]        # Filter: i랑 j가 같다면 List에 추가하지 않음
+print(result)
+result.sort()
+print(result)
+
+words = 'The quick brown fox jumps over the lazy dog'.split()       # 문장을 빈칸 기준으로 나눠 List로 변환
+print(words)
+stuff = [[w.upper(), w.lower(), len(w)] for w in words]
+for i in stuff:
+    print(i)
+
+# Enumerate
+# List의 Element를 추출할 때 번호를 붙여서 추출
+for i, v in enumerate(['tic', 'tac', 'toc']):
+    print(i, v)     # list에 있는 index와 값을 unpacking
+myList = ["a", "b", "c", "d"]
+print(list(enumerate(myList)))     # list에 있는 index와 값을 unpacking하여 list로 저장
+# 문장을 List로 만들고 list의 index와 값을 unpacking하여 dict으로 저
+print({i: j for i, j in enumerate('Gachon University is an academic institute located in South Korea.'.split())})
+
+# Zip
+# 두 개의 list 값을 병렬적으로 추출
+alist = ['a1', 'a2', 'a3']
+blist = ['b1', 'b2', 'b3']
+for a, b in zip(alist, blist):
+    print(a, b)     # 병렬적으로 값 추출
+
+a, b, c = zip((1, 2, 3), (10, 20, 30), (100, 200, 300))
+print(a, b, c)      # 각 tuple의 같은 index 끼리 묶음
+# 각 tuple의 같은 index를 묶어 합을 list로 반환
+print([sum(x) for x in zip((1, 2, 3), (10, 20, 30), (100, 200, 300))])
+
+# Enumerate & Zip
+for i, (a, b) in enumerate(zip(alist, blist)):
+    print(i, a, b)      # index alist[index] blist[index] 표시
+
+# Lambda - Python3에서는 많이 사용하진 않지만, Pandas에서 자주 사용됨
+# 함수 이름 없이, 함수처럼 쓸 수 있는 익명함수
+f = lambda x, y: x + y
+print(f(1, 4))
+
+f = lambda x: x ** 2
+print(f(3))
+
+f = lambda x: x / 2
+print(f(3))
+print((lambda x: x + 1)(5))
+
+# Map & Reduce - Python3에서는 많이 사용하진 않지만, Pandas에서 자주 사용됨
+
+# Map Function
+# Sequence 자료형 (List, Tuple) 각 element에 동일한 function을 적용함
+ex = [1, 2, 3, 4, 5]
+f = lambda x: x ** 2
+print(list(map(f, ex)))
+
+f = lambda x, y: x + y
+print(list(map(f, ex, ex)))
+
+print(list(map(
+    lambda x: x ** 2 if x % 2 == 0 else x,
+    ex
+)))
+# List Comprehension
+# print([value ** 2 for value in ex])
+
+f = lambda x: x ** 2
+print(map(f, ex))
+for i in map(f, ex):
+    print(i)
+
+# Reduce Function
+# map function과 달리 list에 똑같은 함수를 적용해서 통합
+from functools import reduce
+print(reduce(lambda x, y: x + y, [1, 2, 3, 4, 5]))
+
+# reduce function을 이용한 factorial 함수
+def factorial(n):
+    return reduce(
+        lambda x, y: x * y, range(1, n+1))
+
+print(factorial(5))
+
+# Asterisk
+# 흔히 알고 있는 *를 의미
+# 단순 곱셈, 제곱연산, 가변 인자 (*args, **kwargs) 활용 등 다양하게 사용
+def asterisk_test1(a, *args):
+    print(a, args)
+    print(type(args))
+
+asterisk_test1(1, 2, 3, 4, 5, 6)
+
+def asterisk_test2(a, **kwargs):
+    print(a, kwargs)
+    print(type(kwargs))
+
+asterisk_test2(1, b = 2, c = 3, d = 4, e = 5, f = 6)
+
+# Asterisk - unpacking a container
+# tuple, dict 등 자료형에 들어가 있는 값을 unpacking
+# 함수의 입력값, zip 등에 유용하게 사용가능
+def asterisk_test3(a, args):
+    print(a, *args)     # args를 unpacking
+    print(type(args))
+
+# tuple을 unpacking해서 함수에 전달
+asterisk_test1(1, *(2, 3, 4, 5, 6))
+asterisk_test3(1, (2, 3, 4, 5, 6))
+
+a, b, c = ([1, 2], [3, 4], [5, 6])
+print(a, b, c)
+
+data = ([1, 2], [3, 4], [5, 6])
+print(*data)
+
+for data in zip(*([1, 2], [3, 4], [5, 6])):
+    print(data)
+
+def asterisk_test4(a, b, c, d):
+    print(a, b, c, d)
+
+data = {"b": 1, "c": 2, "d": 3}
+asterisk_test4(10, **data)      # dict 타입인 data를 unpacking해서 함수로 전달
+
+def asterisk_test5(a, b, c, d, e=0):
+    print(a, b, c, d, e)
+
+data = {"d": 1, "c": 2, "b": 3, "e": 56}
+asterisk_test5(10, **data)
+
+
