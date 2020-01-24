@@ -7,6 +7,7 @@ print(example.split(','))       # ,를 기준으로 분자열 나누기
 a, b, c = example.split(',')        # 리스트에 있는 값을 a, b, c 로 unpacking
 example = 'cs50.gachon.edu'
 subdomain, domain, tld = example.split('.')     # 리스트에 있는 값을 subdomain, domain, tld로 unpacking
+print(subdomain, domain, tld)
 
 # Join 함수
 # String List를 합쳐 하나의 String으로 변환할 때 사용
@@ -58,7 +59,7 @@ for i, v in enumerate(['tic', 'tac', 'toc']):
     print(i, v)     # list에 있는 index와 값을 unpacking
 myList = ["a", "b", "c", "d"]
 print(list(enumerate(myList)))     # list에 있는 index와 값을 unpacking하여 list로 저장
-# 문장을 List로 만들고 list의 index와 값을 unpacking하여 dict으로 저
+# 문장을 List로 만들고 list의 index와 값을 unpacking하여 dict으로 저장
 print({i: j for i, j in enumerate('Gachon University is an academic institute located in South Korea.'.split())})
 
 # Zip
