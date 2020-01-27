@@ -28,6 +28,7 @@ def get_contents(file_list):
             print(file_name)
     return X_text, y_class
 
+# 주석
 if __name__ == "__main__":
     dir_name = "news_data"
     file_list = get_file_list(dir_name)
