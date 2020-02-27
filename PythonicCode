@@ -140,7 +140,7 @@ def asterisk_test2(a, **kwargs):
 
 asterisk_test2(1, b = 2, c = 3, d = 4, e = 5, f = 6)
 
-# Asterisk - unpacking a container
+# Asterisk - unpackng a container
 # tuple, dict 등 자료형에 들어가 있는 값을 unpacking
 # 함수의 입력값, zip 등에 유용하게 사용가능
 def asterisk_test3(a, args):
